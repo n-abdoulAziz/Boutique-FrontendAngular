@@ -11,9 +11,9 @@ export class AuthService {
   token: string;
   userId:string;
   isAuth$=new BehaviorSubject<boolean>(false);
-
-  constructor(private http:HttpClient,
-              private  api=environment.api ) {
+  api=environment.api;
+  constructor(private http:HttpClient
+               ) {
                 this.initAuth();
               }
 

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -14,9 +15,11 @@ export class ShopComponent implements OnInit {
   userId;
   loading:boolean;
 
-  constructor(private productService:ProductService) { }
+  constructor(private productService:ProductService,
+              private auth:AuthService) { }
 
   ngOnInit(): void {
+    this.userId=this.auth.userId;
     this.productService.products$.subscribe(
       (products:Product[])=>{
         this.loading=true;

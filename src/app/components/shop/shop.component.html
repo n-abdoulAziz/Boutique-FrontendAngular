@@ -1,5 +1,5 @@
 <app-header-page shop="shop"></app-header-page>
-<mat-spinner style="margin: bottom 300px" class="container text-center"></mat-spinner>
+<mat-spinner style="margin: bottom 300px" class="container text-center"*ngIf="loading"></mat-spinner>
 <div class="tab-content container" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
       <div class="row grid-view theme1">
@@ -8,9 +8,10 @@
                   <div class="card-body">
                       <div class="product-thumbnail position-relative">
                           <span class="badge badge-danger top-right">New</span>
-                          <a>
-                              <img class="first-img" width="420" [src]="product.image" alt="thumbnail">
-                          </a>
+                          <div [routerLink]="['/single-product',product.id]">
+                            <img class="first-img" width="420" [src]="product.image" alt="thumbnail">
+
+                          </div>
                           <!-- product links -->
                           <ul class="product-links d-flex justify-content-center">
 
@@ -33,8 +34,15 @@
                           </div>
                           <div class="d-flex align-items-center justify-content-between">
                               <h6 class="product-price">${{product.price}}</h6>
+                              <button class="pro-btn" *ngIf="userId===product.userId" [routerLink]="['/edit-product,product._id']"><i class="ion-android-create"></i></button>
+                              <button class="pro-btn"
+                              *ngIf="userId===product.userId"
+                              data-toggle="modal" [attr.data-target]="'#delete-product-'+product._id">
+                              <i class="ion-android-remove"></i></button>
                               <button class="pro-btn" data-toggle="modal" data-target="#add-to-cart"><i class="icon-basket"></i></button>
                           </div>
+                          <app-delete-product-modal [product]="product"
+                          *ngIf="userId===product.userId"></app-delete-product-modal>
                       </div>
                   </div>
               </div>

@@ -32,9 +32,9 @@ export class ProductService {
       console.log(err);
      }
    }
-   getProductById(){
+   getProductById(id:string){
      return new Promise((resolve,reject)=>{
-       this.http.get(this.api+'/products/+id').subscribe(
+       this.http.get(this.api+'/products/'+id).subscribe(
          (data:Data)=>{
            if(data.status==200){
              resolve(data.result);

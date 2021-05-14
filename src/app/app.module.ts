@@ -21,6 +21,7 @@ import { DeleteProductModalComponent } from './components/partials/modal/delete-
 import { ReactiveFormsModule } from '@angular/forms';
 import { InterceptorInterceptor } from './interceptor.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderPageComponent,
     QuickViewModalComponent,
     AddToCartModalComponent,
-    DeleteProductModalComponent
+    DeleteProductModalComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
