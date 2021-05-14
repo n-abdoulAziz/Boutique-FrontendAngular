@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  tva:20,
   api:'http://localhost:3000/api'
 
 };

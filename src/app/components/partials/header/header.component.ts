@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Cart } from 'src/app/models/cart';
 import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,21 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isAuth;
-  constructor(private auth:AuthService) { }
+  cart:Cart;
+  resume;
+  constructor(private auth:AuthService,
+              private cartService:CartService) { }
 
   ngOnInit(): void {
+    this.cartService.emitCart();
+    this.cartService.cart$.subscribe(
+      (cart:Cart)=>{
+        this.resume=cart.resume;
+      },
+      (err)=>{
+        console.log(err);
+      }
+      )
     this.auth.isAuth$.subscribe((bool:boolean)=>{
       this.isAuth=bool;
     })
